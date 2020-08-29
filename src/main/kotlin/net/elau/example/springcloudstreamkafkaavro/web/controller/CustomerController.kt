@@ -12,6 +12,7 @@ class CustomerController(
         private val customerMapper: CustomerMapper,
         private val customerService: CustomerService
 ) {
+
     @PostMapping
     @ResponseStatus(CREATED)
     fun create(@RequestBody createCustomerRequest: CreateCustomerRequest) {
