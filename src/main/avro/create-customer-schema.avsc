@@ -1,6 +1,6 @@
 {
    "type":"record",
-   "name":"CreateCustomer",
+   "name":"CreateCustomerEvent",
    "namespace":"net.elau.example.springcloudstreamkafkaavro.schema",
    "fields":[
       {

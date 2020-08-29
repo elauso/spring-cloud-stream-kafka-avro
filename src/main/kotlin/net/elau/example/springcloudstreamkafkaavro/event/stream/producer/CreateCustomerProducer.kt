@@ -19,11 +19,11 @@ class CreateCustomerProducer(
     fun produce(createCustomerDto: CreateCustomerDto) {
         this.processor.runCatching {
             val message = with(createCustomerDto) {
-                val event = this@CreateCustomerProducer.customerMapper.toEvent(createCustomerDto)
+                val event = this@CreateCustomerProducer.customerMapper.toEvent(this)
                 MessageBuilder.withPayload(event).build()
             }
             this.output().send(message)
-            log.debug("Message send with success: [$message]")
+            log.debug("Message sent with success: [$message]")
         }.onFailure {
             throw Exception("Failed to publish the message [$createCustomerDto]: ${it.message}", it)
         }
