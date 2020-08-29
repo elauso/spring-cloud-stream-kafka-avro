@@ -1,0 +1,23 @@
+{
+   "type":"record",
+   "name":"CreateCustomer",
+   "namespace":"net.elau.example.springcloudstreamkafkaavro.schema",
+   "fields":[
+      {
+         "name":"firstName",
+         "type":"string"
+      },
+      {
+         "name":"lastName",
+         "type":"string"
+      },
+      {
+         "name":"document",
+         "type":"string"
+      },
+      {
+         "name":"email",
+         "type":"string"
+      }
+   ]
+}
