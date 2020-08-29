@@ -14,8 +14,8 @@ class CustomerController(
 ) {
     @PostMapping
     @ResponseStatus(CREATED)
-    fun create(@RequestBody createCustomerRequest: CreateCustomerRequest) =
-            this.customerMapper.toDto(createCustomerRequest).apply {
-                this@CustomerController.customerService.create(this)
-            }
+    fun create(@RequestBody request: CreateCustomerRequest) {
+        val createCustomerDto = customerMapper.toDto(request)
+        customerService.create(createCustomerDto)
+    }
 }
