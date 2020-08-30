@@ -1,20 +1,31 @@
 spring:
+  application:
+    name: 'spring-cloud-stream-kafka-avro-app'
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     stream:
       default:
         producer:
-          useNativeEncoding: true
+          use-native-encoding: true
         consumer:
-          useNativeEncoding: true
+          use-native-encoding: true
       bindings:
         input:
+          binder: kafka
           destination: queueing.example.customer.created
           content-type: application/*+avro
         output:
+          binder: kafka
           destination: queueing.example.customer.created
           content-type: application/*+avro
+          group: ${spring.application.name}
       kafka:
         binder:
+          brokers: 'localhost:29092'
+          auto-create-topics: false
+          auto-add-partitions: false
+          health-timeout: 30
           producer-properties:
             key.serializer: org.apache.kafka.common.serialization.StringSerializer
             value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer

@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     application
     idea
-    id("org.springframework.boot") version "2.3.3.RELEASE"
+    id("org.springframework.boot") version "2.1.3.RELEASE"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     id("com.commercehub.gradle.plugin.avro") version "0.9.1"
     kotlin("jvm") version "1.3.72"
@@ -22,7 +22,6 @@ repositories {
     }
 }
 
-//extra["springCloudVersion"] = "Hoxton.SR7"
 extra["springCloudVersion"] = "Greenwich.SR1"
 extra["kafkaAvroSerializerVersion"] = "4.0.0"
 extra["mapstructVersion"] = "1.4.0.Beta3"
@@ -38,7 +37,6 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-stream-binder-kafka")
     implementation("io.confluent:kafka-avro-serializer:${property("kafkaAvroSerializerVersion")}")
     implementation("org.apache.avro:avro:${property("avroVersion")}")
-    implementation("org.apache.avro:avro-tools:${property("avroVersion")}")
     implementation("org.mapstruct:mapstruct:${property("mapstructVersion")}")
     kapt("org.mapstruct:mapstruct-processor:${property("mapstructVersion")}")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
