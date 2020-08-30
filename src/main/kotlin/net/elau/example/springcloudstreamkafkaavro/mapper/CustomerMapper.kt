@@ -11,13 +11,13 @@ import org.mapstruct.Mapper
 @Mapper(componentModel = "spring")
 interface CustomerMapper {
 
-    fun toResponse(searchCustomerDto: SearchCustomerDto): SearchCustomerResponse
+    fun toResponse(searchCustomerDtos: List<SearchCustomerDto>): List<SearchCustomerResponse>
 
     fun toDto(createCustomerEvent: CreateCustomerEvent): CreateCustomerDto
 
     fun toDto(createCustomerRequest: CreateCustomerRequest): CreateCustomerDto
 
-    fun toDto(customer: Customer): SearchCustomerDto
+    fun toDto(customers: List<Customer>): List<SearchCustomerDto>
 
     fun toEvent(createCustomerDto: CreateCustomerDto): CreateCustomerEvent
 

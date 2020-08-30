@@ -1,6 +1,7 @@
 package net.elau.example.springcloudstreamkafkaavro.service
 
 import net.elau.example.springcloudstreamkafkaavro.dto.CreateCustomerDto
+import net.elau.example.springcloudstreamkafkaavro.dto.SearchCustomerDto
 import net.elau.example.springcloudstreamkafkaavro.event.stream.producer.CreateCustomerProducer
 import net.elau.example.springcloudstreamkafkaavro.exception.EntityAlreadyExistsException
 import net.elau.example.springcloudstreamkafkaavro.mapper.CustomerMapper
@@ -17,10 +18,10 @@ class CustomerService(
 ) {
 
     @Transactional(propagation = NOT_SUPPORTED)
-    fun findByDocument(document: String) =
-        customerRepository.findByDocument(document).map {
-            customerMapper.toDto(it)
-        }
+    fun findByDocument(document: String): List<SearchCustomerDto> {
+        val customers = customerRepository.findByDocument(document)
+        return customerMapper.toDto(customers)
+    }
 
     @Transactional
     fun register(createCustomerDto: CreateCustomerDto) {

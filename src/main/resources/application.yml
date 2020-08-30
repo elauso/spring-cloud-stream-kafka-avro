@@ -23,11 +23,11 @@ spring:
           binder: kafka
           destination: queueing.example.customer.created
           content-type: application/*+avro
+          group: ${spring.application.name}
         output:
           binder: kafka
           destination: queueing.example.customer.created
           content-type: application/*+avro
-          group: ${spring.application.name}
       kafka:
         binder:
           brokers: 'localhost:29092'

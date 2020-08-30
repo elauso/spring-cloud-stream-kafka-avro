@@ -3,6 +3,7 @@ package net.elau.example.springcloudstreamkafkaavro.web.controller
 import net.elau.example.springcloudstreamkafkaavro.mapper.CustomerMapper
 import net.elau.example.springcloudstreamkafkaavro.service.CustomerService
 import net.elau.example.springcloudstreamkafkaavro.web.request.CreateCustomerRequest
+import net.elau.example.springcloudstreamkafkaavro.web.response.SearchCustomerResponse
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.web.bind.annotation.*
 
@@ -14,10 +15,10 @@ class CustomerController(
 ) {
 
     @GetMapping(value = ["/search"])
-    fun search(@RequestParam document: String) =
-        customerService.findByDocument(document).map {
-            customerMapper.toResponse(it)
-        }
+    fun search(@RequestParam document: String): List<SearchCustomerResponse> {
+        val searchCustomerDtos = customerService.findByDocument(document)
+        return customerMapper.toResponse(searchCustomerDtos)
+    }
 
     @PostMapping
     @ResponseStatus(CREATED)
