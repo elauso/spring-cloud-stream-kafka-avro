@@ -26,9 +26,11 @@ extra["springCloudVersion"] = "Greenwich.SR1"
 extra["kafkaAvroSerializerVersion"] = "4.0.0"
 extra["mapstructVersion"] = "1.4.0.Beta3"
 extra["avroVersion"] = "1.8.1"
+extra["h2databaseVersion"] = "1.4.200"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -43,6 +45,7 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("org.springframework.cloud:spring-cloud-stream-test-support")
+    runtimeOnly("com.h2database:h2:${property("h2databaseVersion")}")
 }
 
 dependencyManagement {

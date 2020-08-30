@@ -13,10 +13,16 @@ class CustomerController(
         private val customerService: CustomerService
 ) {
 
+    @GetMapping(value = ["/search"])
+    fun search(@RequestParam document: String) =
+        customerService.findByDocument(document).map {
+            customerMapper.toResponse(it)
+        }
+
     @PostMapping
     @ResponseStatus(CREATED)
     fun create(@RequestBody createCustomerRequest: CreateCustomerRequest) {
         val createCustomerDto = customerMapper.toDto(createCustomerRequest)
-        customerService.create(createCustomerDto)
+        customerService.apply(createCustomerDto)
     }
 }
