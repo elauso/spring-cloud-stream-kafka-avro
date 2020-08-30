@@ -39,7 +39,7 @@ As configurações como nome do tópico, número de partições, habilitação d
 
 ## Instalação
 
-* Suba as dependências da aplicação: ``` docker-compose up ```
+* Suba as dependências da aplicação: ``` docker-compose up -d```
 * Faça o build do projeto: ``` ./gradlew build ```
 * Rode a aplicação: ``` ./gradlew bootRun ```
 
